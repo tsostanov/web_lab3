@@ -1,0 +1,8 @@
+models\UserBean.class
+utils\CustomNumberConverter.class
+models\Point.class
+database\DatabaseManager.class
+utils\DataValidator.class
+database\DatabaseHandler.class
+database\DatabaseCommands.class
+utils\AreaValidator.class
