@@ -1,5 +1,7 @@
-import models.Point;
-import utils.AreaValidator;
+package ru.timur;
+
+import ru.timur.models.Point;
+import ru.timur.utils.AreaValidator;
 
 import java.util.Scanner;
 

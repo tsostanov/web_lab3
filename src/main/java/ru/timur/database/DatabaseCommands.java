@@ -1,4 +1,4 @@
-package database;
+package ru.timur.database;
 
 public class DatabaseCommands {
     public static final String createTable = """

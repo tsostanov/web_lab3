@@ -24,7 +24,7 @@
             <fileset dir="${main.dir}/webapp"/>
             <manifest>
                 <attribute name="Version" value="${project.ver}"/>
-                <attribute name="Main-Class" value="${main.class}"/>
+                <attribute name="ru.timur.Main-Class" value="${main.class}"/>
             </manifest>
         </jar>
     </target>
@@ -44,15 +44,17 @@
     <!-- Цель генерации документации и добавления MD5/SHA-1 в MANIFEST.MF -->
     <target name="doc" depends="build" description="(*) generate Javadoc, add MD5 and SHA-1 to MANIFEST">
         <mkdir dir="${build.dir}/javadoc"/>
-        <javadoc destdir="${build.dir}/javadoc" sourcepath="${src.dir}" classpathref="classpath">
-            <fileset dir="${src.dir}" includes="**/*.java"/>
+        <checksum property="hash.md5" algorithm="MD5" file="${build.dir}/OPI_Lab3.jar"/>
+        <checksum property="hash.sha1" algorithm="SHA-1" file="${build.dir}/OPI_Lab3.jar"/>
+        <javadoc destdir="${build.dir}/javadoc" sourcepath="${main.dir}" classpathref="classpath" useexternalfile="true">
+            <fileset dir="${main.dir}/java" includes="**/*.java"/>
         </javadoc>
-
-        <!-- Генерация MD5 и SHA-1 -->
-
-
-        <!-- Создание нового JAR с обновленным MANIFEST.MF и Javadoc -->
-
+        <manifest file="${build.dir}/META-INF/MANIFEST.MF" mode="update">
+            <section name="documentation">
+                <attribute name="Project-MD5" value="${hash.md5}"/>
+                <attribute name="Project-SHA-1" value="${hash.sha1}"/>
+            </section>
+        </manifest>
     </target>
 
 

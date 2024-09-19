@@ -1,4 +1,4 @@
-package database;
+package ru.timur.database;
 
 import java.util.Objects;
 

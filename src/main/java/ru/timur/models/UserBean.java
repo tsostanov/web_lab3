@@ -1,13 +1,13 @@
-package models;
+package ru.timur.models;
 
-import database.DatabaseHandler;
+import ru.timur.database.DatabaseHandler;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import utils.AreaValidator;
-import utils.DataValidator;
+import ru.timur.utils.AreaValidator;
+import ru.timur.utils.DataValidator;
 
 import java.io.IOException;
 import java.io.Serializable;

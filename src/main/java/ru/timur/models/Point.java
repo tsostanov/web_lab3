@@ -1,9 +1,7 @@
-package models;
+package ru.timur.models;
 
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
-import org.primefaces.event.SlideEndEvent;
 
 import java.io.Serializable;
 

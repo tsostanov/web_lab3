@@ -1,6 +1,6 @@
-package utils;
+package ru.timur.utils;
 
-import models.Point;
+import ru.timur.models.Point;
 
 public class AreaValidator {
     private static final double X_MAX = 5;

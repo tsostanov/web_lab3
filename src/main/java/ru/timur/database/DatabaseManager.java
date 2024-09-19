@@ -1,6 +1,6 @@
-package database;
+package ru.timur.database;
 
-import models.Point;
+import ru.timur.models.Point;
 
 import java.sql.*;
 import java.util.ArrayList;

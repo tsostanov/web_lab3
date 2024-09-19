@@ -1,4 +1,4 @@
-package utils;
+package ru.timur.utils;
 
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.component.UIComponent;
