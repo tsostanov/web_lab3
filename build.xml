@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project name="OPI_Lab3" default="build">
+    <property file="build.properties"/>
+    <property environment="env"/>
+
+    <!-- Путь к библиотекам -->
+    <path id="classpath">
+        <fileset dir="${user.home}/.m2/repository/" includes="**/*.jar"/>
+    </path>
+
+    <!-- Цель компиляции -->
+    <target name="compile" depends="clean" description="(*) compile the source">
+        <mkdir dir="${classes.dir}"/>
+        <javac target="${java.ver}" source="${java.ver}" srcdir="${src.dir}" destdir="${classes.dir}" encoding="UTF-8">
+            <classpath refid="classpath" />
+        </javac>
+    </target>
+
+    <!-- Цель сборки JAR -->
+    <target name="build" depends="compile" description="(*) build jar file">
+        <jar destfile="${build.dir}/${ant.project.name}.jar" basedir="${classes.dir}" excludes="*Test.class">
+            <fileset dir="${main.dir}/resources"/>
+            <fileset dir="${main.dir}/webapp"/>
+            <manifest>
+                <attribute name="Version" value="${project.ver}"/>
+                <attribute name="Main-Class" value="${main.class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <!-- Цель тестирования -->
+    <target name="test" depends="compile" description="(*) run tests">
+        <junit printsummary="on">
+            <classpath>
+                <path refid="classpath"/>
+                <pathelement location="${classes.dir}"/>
+            </classpath>
+            <test name="${test.class}"/>
+            <formatter type="plain" usefile="false"/>
+        </junit>
+    </target>
+
+    <!-- Цель генерации документации и добавления MD5/SHA-1 в MANIFEST.MF -->
+    <target name="doc" depends="build" description="(*) generate Javadoc, add MD5 and SHA-1 to MANIFEST">
+        <mkdir dir="${build.dir}/javadoc"/>
+        <javadoc destdir="${build.dir}/javadoc" sourcepath="${src.dir}" classpathref="classpath">
+            <fileset dir="${src.dir}" includes="**/*.java"/>
+        </javadoc>
+
+        <!-- Генерация MD5 и SHA-1 -->
+
+
+        <!-- Создание нового JAR с обновленным MANIFEST.MF и Javadoc -->
+
+    </target>
+
+
+    <!-- Цель очистки -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${main.dir}/native2ascii"/>
+    </target>
+</project>

@@ -1,3 +1,4 @@
+Main.class
 models\UserBean.class
 utils\CustomNumberConverter.class
 models\Point.class
