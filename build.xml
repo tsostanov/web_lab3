@@ -10,16 +10,16 @@
     </path>
 
     <!-- Цель компиляции -->
-    <target name="compile" depends="clean" description="(*) compile the source">
+    <target name="compile" description="(*) compile the source">
         <mkdir dir="${classes.dir}"/>
-        <javac target="${java.ver}" source="${java.ver}" srcdir="${src.dir}" destdir="${classes.dir}" encoding="UTF-8">
+        <javac includeantruntime="false" release="17" target="${java.ver}" source="${java.ver}" srcdir="${src.dir}" destdir="${classes.dir}" encoding="UTF-8">
             <classpath refid="classpath" />
         </javac>
     </target>
 
     <!-- Цель сборки JAR -->
     <target name="build" depends="compile" description="(*) build jar file">
-        <jar destfile="${build.dir}/${ant.project.name}.jar" basedir="${classes.dir}" excludes="*Test.class">
+        <jar destfile="${file.jar}" basedir="${classes.dir}" excludes="*Test.class">
             <fileset dir="${main.dir}/resources"/>
             <fileset dir="${main.dir}/webapp"/>
             <manifest>
@@ -121,6 +121,10 @@
         <zip destfile="${build.dir}/revisions.zip">
             <fileset dir="${build.dir}" includes="${ant.project.name}-HEAD~1.jar, ${ant.project.name}-HEAD~2.jar, ${ant.project.name}-HEAD~3.jar, ${ant.project.name}-HEAD~4.jar"/>
         </zip>
+        <delete>
+            <fileset dir="${build.dir}" includes="${ant.project.name}-HEAD~1.jar, ${ant.project.name}-HEAD~2.jar, ${ant.project.name}-HEAD~3.jar, ${ant.project.name}-HEAD~4.jar"/>
+        </delete>
+
     </target>
 
 
