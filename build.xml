@@ -61,11 +61,16 @@
     <target name="team">
         <exec executable="git">
             <arg value="stash"/>
+            <arg value="push"/>
+            <arg value="--"/>
+            <arg value="src/main/java"/>
         </exec>
 
         <exec executable="git">
             <arg value="checkout"/>
             <arg value="HEAD~1"/>
+            <arg value="--"/>
+            <arg value="src/main/java"/>
         </exec>
         <antcall target="build">
             <param name="file.jar" value="${build.dir}/${ant.project.name}-HEAD~1.jar"/>
@@ -74,6 +79,8 @@
         <exec executable="git">
             <arg value="checkout"/>
             <arg value="HEAD~2"/>
+            <arg value="--"/>
+            <arg value="src/main/java"/>
         </exec>
         <antcall target="build">
             <param name="file.jar" value="${build.dir}/${ant.project.name}-HEAD~2.jar"/>
@@ -82,6 +89,8 @@
         <exec executable="git">
             <arg value="checkout"/>
             <arg value="HEAD~3"/>
+            <arg value="--"/>
+            <arg value="src/main/java"/>
         </exec>
         <antcall target="build">
             <param name="file.jar" value="${build.dir}/${ant.project.name}-HEAD~3.jar"/>
@@ -90,6 +99,8 @@
         <exec executable="git">
             <arg value="checkout"/>
             <arg value="HEAD~4"/>
+            <arg value="--"/>
+            <arg value="src/main/java"/>
         </exec>
         <antcall target="build">
             <param name="file.jar" value="${build.dir}/${ant.project.name}-HEAD~4.jar"/>
@@ -98,6 +109,8 @@
         <exec executable="git">
             <arg value="checkout"/>
             <arg value="HEAD"/>
+            <arg value="--"/>
+            <arg value="src/main/java"/>
         </exec>
 
         <exec executable="git">
