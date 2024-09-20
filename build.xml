@@ -57,6 +57,59 @@
         </manifest>
     </target>
 
+    <!-- Цель team для получения предыдущих 4 ревизий, их сборки и упаковки -->
+    <target name="team">
+        <exec executable="git">
+            <arg value="stash"/>
+        </exec>
+
+        <exec executable="git">
+            <arg value="checkout"/>
+            <arg value="HEAD~1"/>
+        </exec>
+        <antcall target="build">
+            <param name="file.jar" value="${build.dir}/${ant.project.name}-HEAD~1.jar"/>
+        </antcall>
+
+        <exec executable="git">
+            <arg value="checkout"/>
+            <arg value="HEAD~2"/>
+        </exec>
+        <antcall target="build">
+            <param name="file.jar" value="${build.dir}/${ant.project.name}-HEAD~2.jar"/>
+        </antcall>
+
+        <exec executable="git">
+            <arg value="checkout"/>
+            <arg value="HEAD~3"/>
+        </exec>
+        <antcall target="build">
+            <param name="file.jar" value="${build.dir}/${ant.project.name}-HEAD~3.jar"/>
+        </antcall>
+
+        <exec executable="git">
+            <arg value="checkout"/>
+            <arg value="HEAD~4"/>
+        </exec>
+        <antcall target="build">
+            <param name="file.jar" value="${build.dir}/${ant.project.name}-HEAD~4.jar"/>
+        </antcall>
+
+        <exec executable="git">
+            <arg value="checkout"/>
+            <arg value="HEAD"/>
+        </exec>
+
+        <exec executable="git">
+            <arg value="stash"/>
+            <arg value="pop"/>
+        </exec>
+
+        <zip destfile="${build.dir}/revisions.zip">
+            <fileset dir="${build.dir}" includes="${ant.project.name}-HEAD~1.jar, ${ant.project.name}-HEAD~2.jar, ${ant.project.name}-HEAD~3.jar, ${ant.project.name}-HEAD~4.jar"/>
+        </zip>
+    </target>
+
 
     <!-- Цель очистки -->
     <target name="clean">
